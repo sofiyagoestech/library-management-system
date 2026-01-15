@@ -1,11 +1,7 @@
 # library-management-system
 
-This project was developed as part of practice core Python programming concepts, including:
-
-1) File handling (reading from/writing to text files)
-2) Data structure manipulation (working with lists and tuples)
-3) User interaction through a console menu
-4) Error handling and input validation
+Status: Work in progress
+Next steps: Create a separate Book class and fix input issues.
 
 **Functional requirements **
 
