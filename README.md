@@ -1,6 +1,7 @@
 # library-management-system
 
 Status: Work in progress
+
 Next steps: Create a separate Book class and fix input issues.
 
 **Functional requirements **
