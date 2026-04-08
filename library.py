@@ -1,13 +1,13 @@
-"""Library programme"""
-
 class Library:
 
-    def __init__(self):
-        self.filename = "library1.txt"
-        self.items = self.start_library()
+    def __init__(self, filename = "library.txt"):
+        self.filename = str(filename)
+        self.items = []
+
 
     def __enter__(self):
         print("Loading your library".center(50, "="))
+        self.start_library()
         print(self.items)
         return self
 
@@ -23,8 +23,7 @@ class Library:
                 for line in file:
                     line = line.strip().split("|")
                     library.append(tuple(line))
-
-            return library
+            self.items = library
 
         except FileNotFoundError:
             return []
@@ -61,28 +60,17 @@ class Library:
     def search_item(self, **kwargs):
         """Search book in list and display it if found.
         Otherwise, error message: No book found"""
-        search = []
-        if kwargs.get("title"):
-            for item in self.items:
-                title, name, year = item
-                if title.lower() == kwargs["title"].lower():
-                    search.append(item)
+        search = set()
+        search_condition = kwargs.get("title", kwargs.get("author"))
 
-        elif kwargs.get("author"):
-            for item in self.items:
-                title, name, year = item
-                if name.lower() == kwargs["author"].lower():
-                    search.append(item)
-        else:
-            return "No book matching your criteria"
+        if not search_condition:
+            raise ValueError("Please choose a title or author")
+
+        for item in self.items:
+            title, name, year = item
+            if title.lower() == search_condition.lower() or name.lower() == search_condition.lower():
+                search.add(item)
 
         if not search:
             return "No book found"
         return search
-
-class Book:
-    def __init__(self, title, author, year):
-        self.book = title, author, year
-
-    def __str__(self):
-        return f"{self.book[0]}|{self.book[1]}|{self.book[2]}"
