@@ -6,6 +6,7 @@ The application manages a text-based library of books and supports loading data 
 
 **Why I Built This Project
 **
+
 I created this project to strengthen my practical Python and test automation skills in a simple but realistic scenario.
 
 **It gave me a chance to work with:**
